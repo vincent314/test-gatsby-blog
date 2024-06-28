@@ -26,7 +26,9 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Bio />
       <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
+        {posts
+          .filter(post => !post.frontmatter.draft)
+          .map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
@@ -87,6 +89,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          draft
         }
       }
     }
