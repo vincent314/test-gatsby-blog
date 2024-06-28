@@ -2,6 +2,7 @@
 title: My First article
 date: "2024-06-23"
 description: "This is my first article"
+category: "Test"
 ---
 
 ## Section 1
