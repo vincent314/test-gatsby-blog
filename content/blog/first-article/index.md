@@ -17,3 +17,11 @@ Blah blah
 flowchart LR
     Start --> Stop
 ```
+
+## code sample 
+
+```kotlin
+fun helloWorld(name:String){
+    println("Hello World, $name")
+}
+```
