@@ -51,7 +51,7 @@ value class CodeIban(val code: String)
 Désormais, impossible de se tromper d'argument avec une signature de fonction comme celle-ci, le compilateur ne nous laissera pas faire. Cette fois sans utiliser de paramètres nommés, mais avec un typage fort :
 
 ```kotlin
-fun checkBicIban(iban:CodeIban, bic: CodeBic):Boolean;
+fun checkBicIban(iban:CodeIban, bic: CodeBic):Boolean
 [...]
 checkBicIban(CodeIban("GB15HBUK40127612345678"), CodeBic("HBUKGB4B"))
 ```
