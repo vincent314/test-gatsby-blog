@@ -2,9 +2,8 @@
 title: Kotlin Script
 date: "2024-08-30"
 description: "Scripter les taches quotidiennes avec Kotlin"
+category: "kotlin"
 ---
-# Kotlin script
-
 Kotlin est un langage facile à apprendre pour les développeurs Java. Nous avons tous nos préférences, mais il est rapidement devenu mon langage #1, un langage à tout faire.
 
 Il est particulièrement connu pour le développement Android, un peu moins pour le développement sur la JVM où il remplace avantageusement Java. Avec [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html), nous pouvons développer, avec le même langage et en réutilisant le même code base, des applications Android, iOS, JVM, Javascript, WASM et même en natif !

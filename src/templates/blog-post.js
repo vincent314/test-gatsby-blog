@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -19,10 +19,11 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 className="justify-center text-3xl font-extrabold" itemProp="headline">{post.frontmatter.title}</h1>
+          <small className="dark:text-gray-400">{post.frontmatter.date}</small>
         </header>
         <section
+          className="text-justify my-5"
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
@@ -91,6 +92,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        draft
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

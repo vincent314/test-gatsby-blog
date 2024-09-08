@@ -2,9 +2,8 @@
 title: "[Kotlin] Les Value Classes"
 date: "2024-07-22"
 description: "Ajouter du sens métier avec les Value Classes"
+category: "kotlin"
 ---
-# [Kotlin] Ajouter du sens métier avec les Value Classes
-
 L'idée de ce premier article sur Kotlin m'est venue avec un cas concret en Java que j'ai croisé récemement. Une des qualités de Kotlin sur Java est l'expérience développeur améliorée en donnant la possibilité d'éclaircir le code d'un point de vue domaine métier (notamment avec des DSL - Domaine Specific Language).
 
 ## La problématique
