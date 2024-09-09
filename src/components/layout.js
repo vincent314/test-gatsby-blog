@@ -6,12 +6,17 @@ import { Helmet } from "react-helmet"
 import Panel from "./panel"
 
 const useLocalStorage = (key, initialValue) => {
+  const isServer = typeof localStorage === "undefined"
+
   const [value, setValue] = useState(() => {
-    const storedValue = localStorage.getItem(key)
+    const storedValue = (isServer) ? null : localStorage.getItem(key)
     return storedValue ? JSON.parse(storedValue) : initialValue
   })
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value))
+    const isServer = typeof localStorage === "undefined"
+    if (!isServer) {
+      localStorage.setItem(key, JSON.stringify(value))
+    }
   }, [key, value])
 
   return [value, setValue]
@@ -52,9 +57,9 @@ const Layout = ({ location, children }) => {
       <footer>
         <Panel>
           <small>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.com">Gatsby</a>
           </small>
         </Panel>
       </footer>
