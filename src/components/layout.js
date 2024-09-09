@@ -41,13 +41,11 @@ const Layout = ({ location, children }) => {
     </header>
   )
 
-  const background = `${dark ? "dark" : ""}  bg-slate-100 dark:bg-slate-900`
-
   return (
-    <div className={`${dark ? "dark" : ""} text-slate-700 dark:text-slate-100 py-5 px-5 sm:px-10 md:px-20 lg:px-30 ${background}`}
+    <div className={`${dark ? "dark" : ""} text-slate-700 dark:text-slate-100 py-5 px-5 sm:px-10 md:px-20 lg:px-30`}
          data-is-root-path={isRootPath}>
       <Helmet>
-        <body className={background}></body>
+        <body className={`${dark ? "dark" : ""} bg-slate-100 dark:bg-slate-900`}></body>
       </Helmet>
       {header}
       <main>{children}</main>
