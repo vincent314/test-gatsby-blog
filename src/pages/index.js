@@ -1,9 +1,10 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, navigate } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Panel from "../components/panel"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -24,39 +25,41 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
+      {/*<Bio />*/}
+      <div className="grid md:grid-cols-2 grid-cols-1 justify-items-stretch gap-x-2 gap-y-2">
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
+            <article
+              key={post.fields.slug}
+              itemScope
+              itemType="http://schema.org/Article"
+              onClick={() => navigate(post.fields.slug)}
+            >
+              <Panel>
+                <header className="dark:text-gray-400 text-sm">
+                  <h2 className="text-xl font-extrabold">
+                    <span itemProp="headline">{title}</span>
                   </h2>
-                  <small>{post.frontmatter.date}</small>
+                  <div className="flex justify-between">
+                    <small>{post.frontmatter.date}</small>
+                    <small>{post.frontmatter.category}</small>
+                  </div>
                 </header>
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
+                      __html: post.frontmatter.description || post.excerpt
                     }}
                     itemProp="description"
                   />
                 </section>
-              </article>
-            </li>
+              </Panel>
+            </article>
           )
         })}
-      </ol>
+      </div>
     </Layout>
   )
 }
@@ -77,7 +80,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(
+      sort: { frontmatter: { date: DESC } },
+      filter: { frontmatter: {draft : {ne : true}}}
+      ) {
       nodes {
         excerpt
         fields {
@@ -87,6 +93,8 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          category
+          draft
         }
       }
     }
