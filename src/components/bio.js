@@ -30,7 +30,7 @@ const Bio = () => {
   const author = data.site.siteMetadata?.author
 
   return (
-    <div className="bio">
+    <div className="bio py-2">
       <StaticImage
         className="bio-avatar"
         layout="fixed"

@@ -4,11 +4,12 @@ import { graphql, Link } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Panel from "../components/panel"
 
 const BlogPostTemplate = ({
-  data: { previous, next, site, markdownRemark: post },
-  location,
-}) => {
+                            data: { previous, next, site, markdownRemark: post },
+                            location
+                          }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
 
   return (
@@ -18,19 +19,20 @@ const BlogPostTemplate = ({
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
-          <h1 className="justify-center text-3xl font-extrabold" itemProp="headline">{post.frontmatter.title}</h1>
-          <small className="dark:text-gray-400">{post.frontmatter.date}</small>
-        </header>
-        <section
-          className="text-justify my-5"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <Panel>
+          <header>
+            <h1 className="justify-center text-3xl font-extrabold" itemProp="headline">{post.frontmatter.title}</h1>
+            <small className="dark:text-gray-400">{post.frontmatter.date}</small>
+          </header>
+          <section
+            className="post text-justify my-5 text-sm lg:text-base"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+            itemProp="articleBody"
+          />
+          <footer>
+            <Bio />
+          </footer>
+        </Panel>
       </article>
       <nav className="blog-post-nav">
         <ul
@@ -39,21 +41,25 @@ const BlogPostTemplate = ({
             flexWrap: `wrap`,
             justifyContent: `space-between`,
             listStyle: `none`,
-            padding: 0,
+            padding: 0
           }}
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
+              <Panel>
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              </Panel>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
+              <Panel>
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              </Panel>
             )}
           </li>
         </ul>
@@ -64,10 +70,13 @@ const BlogPostTemplate = ({
 
 export const Head = ({ data: { markdownRemark: post } }) => {
   return (
+    <>
     <Seo
       title={post.frontmatter.title}
       description={post.frontmatter.description || post.excerpt}
     />
+      <link rel="stylesheet" href="./post.css"/>
+    </>
   )
 }
 

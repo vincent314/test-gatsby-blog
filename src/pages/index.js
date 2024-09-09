@@ -4,6 +4,7 @@ import { graphql, navigate } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Panel from "../components/panel"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -32,28 +33,29 @@ const BlogIndex = ({ data, location }) => {
           return (
             <article
               key={post.fields.slug}
-              className="border border-zinc-800 dark:border-zinc-200 rounded-2xl px-4 py-2"
               itemScope
               itemType="http://schema.org/Article"
               onClick={() => navigate(post.fields.slug)}
             >
-              <header className="dark:text-gray-400 text-sm">
-                <h2 className="text-xl font-extrabold">
-                  <span itemProp="headline">{title}</span>
-                </h2>
-                <div className="flex justify-between">
-                  <small>{post.frontmatter.date}</small>
-                  <small>{post.frontmatter.category}</small>
-                </div>
-              </header>
-              <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: post.frontmatter.description || post.excerpt
-                  }}
-                  itemProp="description"
-                />
-              </section>
+              <Panel>
+                <header className="dark:text-gray-400 text-sm">
+                  <h2 className="text-xl font-extrabold">
+                    <span itemProp="headline">{title}</span>
+                  </h2>
+                  <div className="flex justify-between">
+                    <small>{post.frontmatter.date}</small>
+                    <small>{post.frontmatter.category}</small>
+                  </div>
+                </header>
+                <section>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: post.frontmatter.description || post.excerpt
+                    }}
+                    itemProp="description"
+                  />
+                </section>
+              </Panel>
             </article>
           )
         })}
@@ -80,7 +82,8 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       sort: { frontmatter: { date: DESC } },
-      filter: { frontmatter: {draft : {ne : true}}}) {
+      filter: { frontmatter: {draft : {ne : true}}}
+      ) {
       nodes {
         excerpt
         fields {
