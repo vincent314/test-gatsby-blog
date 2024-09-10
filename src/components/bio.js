@@ -32,7 +32,7 @@ const Bio = () => {
   return (
     <div className="bio py-2">
       <StaticImage
-        className="bio-avatar"
+        className="bio-avatar rounded-full"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
         src="../images/profile-pic.png"

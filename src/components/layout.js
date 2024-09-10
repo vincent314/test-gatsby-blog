@@ -38,8 +38,8 @@ const Layout = ({ location, children }) => {
 
   const header = (
     <header className="flex flex-row flex-nowrap justify-between mb-10 items-center">
-      <Link to={rootPath}><HomeIcon className="size-6"></HomeIcon></Link>
-      <Link to={rootPath} className="text-4xl font-cursive">Blog</Link>
+      <Link to="/"><HomeIcon className="size-6"></HomeIcon></Link>
+      <Link to="/" className="text-4xl font-cursive">Blog</Link>
       <div>
         <button onClick={switchTheme}>{dark ? <SunIcon className="size-6" /> : <MoonIcon className="size-6" />}</button>
       </div>
